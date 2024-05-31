@@ -28,23 +28,23 @@ const Banner = () => {
         {/*    <!-- Slides --> */}
         <div className="overflow-hidden" data-glide-el="track">
           <ul className="whitespace-no-wrap flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform] relative flex w-full overflow-hidden p-0">
-            <li>
+            <li className="relative">
               <img
                 src={fitnessManImage}
-                className="w-full max-w-full max-h-screen m-auto"
+                className="w-full max-w-full max-h-screen m-auto relative"
               />
+              <p className="absolute text-white text-4xl left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                POWER UP
+              </p>
             </li>
             <li>
               <img
                 src={youngMan}
-                className="w-full max-w-full max-h-screen m-auto"
+                className="w-full max-w-full max-h-screen m-auto relative"
               />
-            </li>
-            <li>
-              <img
-                src={dumble}
-                className="w-full max-w-full max-h-screen  m-auto"
-              />
+              <p className="absolute text-white text-4xl top-1/2 transform -translate-y-1/2">
+                SHAPE UP
+              </p>
             </li>
           </ul>
         </div>
