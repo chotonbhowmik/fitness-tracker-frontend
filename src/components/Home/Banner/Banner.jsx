@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import Glide from "@glidejs/glide";
-
+import fitnessManImage from "../../../assets/young-fitness-man-studio.jpg";
+import youngMan from "../../../assets/young.jpg";
+import dumble from "../../../assets/dumbbells-floor-gym-ai-generative.jpg";
 const Banner = () => {
     useEffect(() => {
       const slider = new Glide(".glide-01", {
@@ -28,32 +30,20 @@ const Banner = () => {
           <ul className="whitespace-no-wrap flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform] relative flex w-full overflow-hidden p-0">
             <li>
               <img
-                src="https://Tailwindmix.b-cdn.net/image-01.jpg"
-                className="w-full max-w-full max-h-full m-auto"
+                src={fitnessManImage}
+                className="w-full max-w-full max-h-screen m-auto"
               />
             </li>
             <li>
               <img
-                src="https://Tailwindmix.b-cdn.net/image-02.jpg"
-                className="w-full max-w-full max-h-full m-auto"
+                src={youngMan}
+                className="w-full max-w-full max-h-screen m-auto"
               />
             </li>
             <li>
               <img
-                src="https://Tailwindmix.b-cdn.net/image-03.jpg"
-                className="w-full max-w-full max-h-full m-auto"
-              />
-            </li>
-            <li>
-              <img
-                src="https://Tailwindmix.b-cdn.net/image-04.jpg"
-                className="w-full max-w-full max-h-full m-auto"
-              />
-            </li>
-            <li>
-              <img
-                src="https://Tailwindmix.b-cdn.net/image-05.jpg"
-                className="w-full max-w-full max-h-full m-auto"
+                src={dumble}
+                className="w-full max-w-full max-h-screen  m-auto"
               />
             </li>
           </ul>
@@ -64,7 +54,7 @@ const Banner = () => {
           data-glide-el="controls"
         >
           <button
-            className="inline-flex items-center justify-center w-8 h-8 transition duration-300 border rounded-full border-slate-700 bg-white/20 text-slate-700 hover:border-slate-900 hover:text-slate-900 focus-visible:outline-none lg:h-12 lg:w-12"
+            className="inline-flex items-center justify-center w-8 h-8 transition duration-300 border rounded-full border-slate-700 bg-[#059669] text-slate-700 hover:border-slate-900 hover:text-slate-900 focus-visible:outline-none lg:h-12 lg:w-12"
             data-glide-dir="<"
             aria-label="prev slide"
           >
@@ -85,7 +75,7 @@ const Banner = () => {
             </svg>
           </button>
           <button
-            className="inline-flex items-center justify-center w-8 h-8 transition duration-300 border rounded-full border-slate-700 bg-white/20 text-slate-700 hover:border-slate-900 hover:text-slate-900 focus-visible:outline-none lg:h-12 lg:w-12"
+            className="inline-flex items-center justify-center w-8 h-8 transition duration-300 border rounded-full border-slate-700 bg-[#059669] text-slate-700 hover:border-slate-900 hover:text-slate-900 focus-visible:outline-none lg:h-12 lg:w-12"
             data-glide-dir=">"
             aria-label="next slide"
           >
