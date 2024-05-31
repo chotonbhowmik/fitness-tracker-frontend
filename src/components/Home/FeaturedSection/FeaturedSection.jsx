@@ -11,7 +11,7 @@ const FeaturedSection = () => {
           tracking, and community support to help you achieve your health goals.
           Explore these features and transform your fitness journey today.
         </p>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid  grid-cols-1 lg:grid-cols-3 gap-4">
           <div className="flex flex-col items-center gap-4 text-center my-5 shadow py-10 px-6">
             <div className="flex items-center text-emerald-500">
               <svg
