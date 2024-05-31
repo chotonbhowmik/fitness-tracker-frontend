@@ -2,6 +2,7 @@ import AboutSection from "../../components/Home/AboutSection/AboutSection";
 import Banner from "../../components/Home/Banner/Banner";
 import FeaturedClass from "../../components/Home/FeaturedClass/FeaturedClass";
 import FeaturedSection from "../../components/Home/FeaturedSection/FeaturedSection";
+
 import ForumSection from "../../components/Home/ForumSection/ForumSection";
 import NewsLetter from "../../components/Home/NewsLetter/NewsLetter";
 import TeamSection from "../../components/Home/TeamSection/TeamSection";
@@ -20,6 +21,7 @@ const Home = () => {
           <ForumSection></ForumSection>
           <NewsLetter></NewsLetter>
           <TeamSection></TeamSection>
+    
         </div>
       </div>
     );
