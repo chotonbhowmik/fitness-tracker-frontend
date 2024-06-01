@@ -1,10 +1,15 @@
-import  { useState } from 'react';
+import  { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Navbar = () => {
     const [isToggleOpen, setIsToggleOpen] = useState(false);
      const [isOpen, setIsOpen] = useState(false);
+const { user, logOut } = useContext(AuthContext);
 
+const signOut = () => {
+  logOut().then().catch();
+};
      const handleClick = () => {
        setIsOpen(!isOpen);
      };
@@ -106,111 +111,128 @@ const Navbar = () => {
                   <span>Forum</span>
                 </a>
               </li>
-              <li role="none" className="flex items-stretch">
-                <a
-                  role="menuitem"
-                  aria-haspopup="false"
-                  className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-4"
-                  href="javascript:void(0)"
-                >
-                  <button className="inline-flex items-center justify-center h-10 gap-2 px-6 text-sm font-medium tracking-wide text-white transition duration-300 rounded-full whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
-                    <span>Login</span>
-                  </button>
-                </a>
-              </li>
-              <li role="none" className="flex items-stretch">
-                <a
-                  role="menuitem"
-                  aria-haspopup="false"
-                  className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-4"
-                  href="javascript:void(0)"
-                >
-                  <button className="inline-flex items-center justify-center h-10 gap-2 px-6 text-sm font-medium tracking-wide text-white transition duration-300 rounded-full whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
-                    <span>Sign Up</span>
-                  </button>
-                </a>
-              </li>
-
-              <div className="relative inline-flex ">
-                <div className="ml-auto flex items-center px-6 lg:ml-0 lg:p-0">
-                  {/*        <!-- Avatar --> */}
-                  <a
-                    onClick={handleClick}
-                    className="relative inline-flex h-10 w-10 items-center justify-center rounded-full text-white"
-                  >
-                    <img
-                      src="https://i.pravatar.cc/40?img=35"
-                      alt="user name"
-                      title="user name"
-                      width="40"
-                      height="40"
-                      className="max-w-full rounded-full"
-                    />
-                  </a>
+              {!user ? (
+                <div className="flex">
+                  <li role="none" className="flex items-stretch">
+                    <a
+                      role="menuitem"
+                      aria-haspopup="false"
+                      className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-4"
+                      href="javascript:void(0)"
+                    >
+                      <NavLink to="/login">
+                        <button className="inline-flex items-center justify-center h-10 gap-2 px-6 text-sm font-medium tracking-wide text-white transition duration-300 rounded-full whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
+                          <span>Login</span>
+                        </button>
+                      </NavLink>
+                    </a>
+                  </li>
+                  <li role="none" className="flex items-stretch">
+                    <a
+                      role="menuitem"
+                      aria-haspopup="false"
+                      className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-4"
+                      href="javascript:void(0)"
+                    >
+                      <NavLink to="register">
+                        <button className="inline-flex items-center justify-center h-10 gap-2 px-6 text-sm font-medium tracking-wide text-white transition duration-300 rounded-full whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
+                          <span>Sign Up</span>
+                        </button>
+                      </NavLink>
+                    </a>
+                  </li>
                 </div>
-                {isOpen && (
-                  <ul className="absolute z-20 flex flex-col py-2 mt-1 list-none bg-white rounded shadow-md  top-full shadow-slate-500/10">
-                    <li>
-                      <a
-                        className="flex items-start justify-start gap-2 p-2 px-5 transition-colors duration-300 text-slate-500 hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 focus:text-emerald-600 focus:outline-none focus-visible:outline-none"
-                        href="#"
-                      >
-                        <span className="flex flex-col gap-1 overflow-hidden whitespace-nowrap">
-                          <span className="leading-5 truncate">Dashboard</span>
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="flex items-start justify-start gap-2 p-2 px-5 transition-colors duration-300 text-slate-500 hover:bg-emerald-50 hover:text-emerald-600 focus:bg-emerald-50 focus:text-emerald-600 focus:outline-none focus-visible:outline-none"
-                        href="#"
-                        aria-current="page"
-                      >
-                        <span className="flex flex-col gap-1 overflow-hidden whitespace-nowrap">
-                          <span className="leading-5 truncate">
-                            Metrics and
+              ) : (
+                <div className="relative inline-flex ">
+                  <div className="ml-auto flex items-center px-6 lg:ml-0 lg:p-0">
+                    {/*        <!-- Avatar --> */}
+                    <a
+                      onClick={handleClick}
+                      className="relative inline-flex h-10 w-10 items-center justify-center rounded-full text-white"
+                    >
+                      <img
+                        src="https://i.pravatar.cc/40?img=35"
+                        alt="user name"
+                        title="user name"
+                        width="40"
+                        height="40"
+                        className="max-w-full rounded-full"
+                      />
+                    </a>
+                  </div>
+                  {isOpen && (
+                    <ul className="absolute z-20 flex flex-col py-2 mt-1 list-none bg-white rounded shadow-md  top-full shadow-slate-500/10">
+                      <li>
+                        <a
+                          className="flex items-start justify-start gap-2 p-2 px-5 transition-colors duration-300 text-slate-500 hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 focus:text-emerald-600 focus:outline-none focus-visible:outline-none"
+                          href="#"
+                        >
+                          <span className="flex flex-col gap-1 overflow-hidden whitespace-nowrap">
+                            <NavLink to="/dashboard">
+                              <span className="leading-5 truncate">
+                                Dashboard
+                              </span>
+                            </NavLink>
                           </span>
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="flex items-start justify-start gap-2 p-2 px-5 overflow-hidden transition-colors duration-300 text-slate-500 hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 focus:text-emerald-600 focus:outline-none focus-visible:outline-none"
-                        href="#"
-                      >
-                        <span className="flex flex-col gap-1 overflow-hidden whitespace-nowrap">
-                          <span className="leading-5 truncate">email</span>
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="flex items-start justify-start gap-2 p-2 px-5 transition-colors duration-300 text-slate-500 hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 focus:text-emerald-600 focus:outline-none focus-visible:outline-none"
-                        href="#"
-                      >
-                        <span className="flex flex-col gap-1 overflow-hidden whitespace-nowrap">
-                          {" "}
-                          <span className="leading-5 truncate">
-                            User settings
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="flex items-start justify-start gap-2 p-2 px-5 transition-colors duration-300 text-slate-500 hover:bg-emerald-50 hover:text-emerald-600 focus:bg-emerald-50 focus:text-emerald-600 focus:outline-none focus-visible:outline-none"
+                          href="#"
+                          aria-current="page"
+                        >
+                          <span className="flex flex-col gap-1 overflow-hidden whitespace-nowrap">
+                            <span className="leading-5 truncate">
+                              Metrics and
+                            </span>
                           </span>
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="flex items-start justify-start gap-2 p-2 px-5 transition-colors duration-300 text-slate-500 hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 focus:text-emerald-600 focus:outline-none focus-visible:outline-none"
-                        href="#"
-                      >
-                        <span className="flex flex-col gap-1 overflow-hidden whitespace-nowrap">
-                          <span className="leading-5 truncate">
-                            User Profile
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="flex items-start justify-start gap-2 p-2 px-5 overflow-hidden transition-colors duration-300 text-slate-500 hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 focus:text-emerald-600 focus:outline-none focus-visible:outline-none"
+                          href="#"
+                        >
+                          <span className="flex flex-col gap-1 overflow-hidden whitespace-nowrap">
+                            <span
+                              className="leading-5 truncate"
+                              onClick={signOut}
+                            >
+                              LogOut
+                            </span>
                           </span>
-                        </span>
-                      </a>
-                    </li>
-                  </ul>
-                )}
-              </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="flex items-start justify-start gap-2 p-2 px-5 transition-colors duration-300 text-slate-500 hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 focus:text-emerald-600 focus:outline-none focus-visible:outline-none"
+                          href="#"
+                        >
+                          <span className="flex flex-col gap-1 overflow-hidden whitespace-nowrap">
+                            {" "}
+                            <span className="leading-5 truncate">
+                              User settings
+                            </span>
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="flex items-start justify-start gap-2 p-2 px-5 transition-colors duration-300 text-slate-500 hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 focus:text-emerald-600 focus:outline-none focus-visible:outline-none"
+                          href="#"
+                        >
+                          <span className="flex flex-col gap-1 overflow-hidden whitespace-nowrap">
+                            <span className="leading-5 truncate">
+                              User Profile
+                            </span>
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  )}
+                </div>
+              )}
             </ul>
           </nav>
         </div>
