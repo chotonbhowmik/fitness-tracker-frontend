@@ -5,6 +5,8 @@ import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import Dashboard from "../Layout/Dashboard";
 import BecomeTrainer from "../pages/BecomeTrainer/BecomeTrainer";
+import AllTrainer from "../pages/AllTrainer/AllTrainer";
+import TrainerDetails from "../pages/TrainerDetails/TrainerDetails";
  export const router = createBrowserRouter([
    {
      path: "/",
@@ -25,6 +27,14 @@ import BecomeTrainer from "../pages/BecomeTrainer/BecomeTrainer";
        {
          path: "/become-trainer",
          element: <BecomeTrainer></BecomeTrainer>,
+       },
+       {
+         path: "/all-trainer",
+         element: <AllTrainer></AllTrainer>,
+       },
+       {
+         path: "/details/:id",
+         element: <TrainerDetails></TrainerDetails>,
        },
      ],
    },
