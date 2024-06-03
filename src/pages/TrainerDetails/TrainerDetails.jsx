@@ -1,20 +1,28 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const TrainerDetails = () => {
   const { id } = useParams();
   const [trainerData, settrainerData] = useState(null);
+  const [selectData, setSelectData] = useState()
   const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
   useEffect(() => {
     axiosPublic.get(`/alltrainer/${id}`).then((res) => {
       settrainerData(res.data);
     });
     console.log(trainerData);
   }, [axiosPublic, id]);
+
+
   if (!trainerData) {
-    return <div>Loading...</div>; 
+    return <div>Loading...</div>;
   }
+   const handleTimeSelect = (time) => {
+     setSelectData(time);
+     navigate("/booking", { state: { trainerData, selectedTime: time } });
+   };
   return (
     <div>
       <div className="flex flex-col overflow-hidden bg-white rounded shadow-md text-slate-500 shadow-slate-200 sm:flex-row max-w-4xl mx-auto my-5">
@@ -58,6 +66,7 @@ const TrainerDetails = () => {
               <button
                 className="inline-flex items-center justify-center h-8 gap-2 px-6 text-sm font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"
                 key={index}
+                onClick={handleTimeSelect(trainer)}
               >
                 {trainer}
               </button>

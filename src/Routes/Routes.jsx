@@ -7,6 +7,7 @@ import Dashboard from "../Layout/Dashboard";
 import BecomeTrainer from "../pages/BecomeTrainer/BecomeTrainer";
 import AllTrainer from "../pages/AllTrainer/AllTrainer";
 import TrainerDetails from "../pages/TrainerDetails/TrainerDetails";
+import Booking from "../pages/Booking/Booking";
  export const router = createBrowserRouter([
    {
      path: "/",
@@ -35,6 +36,10 @@ import TrainerDetails from "../pages/TrainerDetails/TrainerDetails";
        {
          path: "/details/:id",
          element: <TrainerDetails></TrainerDetails>,
+       },
+       {
+         path: "/booking",
+         element: <Booking></Booking>,
        },
      ],
    },
