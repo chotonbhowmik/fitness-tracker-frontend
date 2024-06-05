@@ -8,50 +8,77 @@ import BecomeTrainer from "../pages/BecomeTrainer/BecomeTrainer";
 import AllTrainer from "../pages/AllTrainer/AllTrainer";
 import TrainerDetails from "../pages/TrainerDetails/TrainerDetails";
 import Booking from "../pages/Booking/Booking";
- export const router = createBrowserRouter([
-   {
-     path: "/",
-     element: <Main></Main>,
-     children: [
-       {
-         path: "/",
-         element: <Home></Home>,
-       },
-       {
-         path: "/login",
-         element: <Login></Login>,
-       },
-       {
-         path: "/register",
-         element: <Register></Register>,
-       },
-       {
-         path: "/become-trainer",
-         element: <BecomeTrainer></BecomeTrainer>,
-       },
-       {
-         path: "/all-trainer",
-         element: <AllTrainer></AllTrainer>,
-       },
-       {
-         path: "/details/:id",
-         element: <TrainerDetails></TrainerDetails>,
-       },
-       {
-         path: "/booking",
-         element: <Booking></Booking>,
-       },
-     ],
-   },
-   {
-     path: "dashboard",
-     element: <Dashboard></Dashboard>,
-     children: [
-       // normal user routes
-       {
-         path: "userHome",
-         element: <user></user>,
-       },
-     ],
-   },
- ]);
+import AllNewsLetter from "../pages/Admin/AllNewsLetter/AllNewsLetter";
+import UserHome from "../pages/Admin/UserHome/UserHome";
+import AdminDashboardTrainer from "../pages/Admin/AdminDashboardTrainer/AdminDashboardTrainer";
+import AllTrainers from "../pages/Admin/AllTrainers/AllTrainers";
+import AdminTrainerDetails from "../pages/Admin/AdminTrainerDetails/AdminTrainerDetails";
+import AddClass from "../pages/Admin/AddClass/AddClass";
+// import UserHome from "../components/UserHome/UserHome"; 
+
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Main></Main>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/become-trainer",
+        element: <BecomeTrainer></BecomeTrainer>,
+      },
+      {
+        path: "/all-trainer",
+        element: <AllTrainer></AllTrainer>,
+      },
+      {
+        path: "/details/:id",
+        element: <TrainerDetails></TrainerDetails>,
+      },
+      {
+        path: "/booking",
+        element: <Booking></Booking>,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "userHome",
+        element: <UserHome></UserHome>,
+      },
+      {
+        path: "all-newsLetter",
+        element: <AllNewsLetter></AllNewsLetter>,
+      },
+      {
+        path: "all-applied-trainer",
+        element: <AdminDashboardTrainer></AdminDashboardTrainer>,
+      },
+      {
+        path: "all-trainers",
+        element: <AllTrainers></AllTrainers>,
+      },
+      {
+        path: "trainer-details/:id",
+        element: <AdminTrainerDetails></AdminTrainerDetails>,
+      },
+      {
+        path: "add-class",
+        element: <AddClass></AddClass>,
+      },
+    ],
+  },
+]);

@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
-import BeATrainer from "./BeATrainer";
+import {  fetchUpdateTrainer } from "../../../Api/Api";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
-const TrainerDetails = () => {
+const AdminTrainerDetails = () => {
   const { id } = useParams();
   const [trainerData, setTrainerData] = useState(null);
-  const [selectedTime, setSelectedTime] = useState(null);
+//   const [selectedTime, setSelectedTime] = useState(null);
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
 
   useEffect(() => {
-    axiosPublic.get(`/alltrainer/${id}`).then((res) => {
+    axiosPublic.get(`alltrainer/${id}`).then((res) => {
       setTrainerData(res.data);
     });
   }, [axiosPublic, id]);
@@ -20,9 +20,14 @@ const TrainerDetails = () => {
     return <div>Loading...</div>;
   }
 
-  const handleTimeSelect = (time) => {
-    setSelectedTime(time);
-    navigate("/booking", { state: { trainerData, selectedTime: time } });
+  const handleUpdateStatus = async (allTrainer) => {
+    try {
+      const response = await fetchUpdateTrainer(allTrainer);
+      console.log(response);
+     navigate("/dashboard/all-trainers");
+    } catch (error) {
+      console.error("Error updating trainer:", error);
+    }
   };
 
   return (
@@ -42,7 +47,7 @@ const TrainerDetails = () => {
               className="relative inline-flex items-center justify-center w-12 h-12 text-white rounded-full"
             >
               <img
-                src="https://i.pravatar.cc/48?img=24"
+                src={trainerData.image}
                 alt="user name"
                 title="user name"
                 width="48"
@@ -64,16 +69,26 @@ const TrainerDetails = () => {
 
             <button
               className="inline-flex items-center justify-center h-8 gap-2 px-6 text-sm font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"
-              onClick={() => handleTimeSelect(trainerData.time)}
+              
             >
-              {trainerData.time}
+              {trainerData.time} H
+            </button>
+          </div>
+          <div className="inline-flex overflow-hidden rounded gap-3 mt-5">
+            <button
+              className="inline-flex items-center justify-center h-12 gap-2 px-6 text-sm font-medium tracking-wide text-white transition duration-300 whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"
+              onClick={() => handleUpdateStatus(trainerData._id)}
+            >
+              <span>Confirm</span>
+            </button>
+            <button className="inline-flex items-center justify-center h-12 gap-2 px-6 text-sm font-medium tracking-wide text-white transition duration-300 whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
+              <span>Reject</span>
             </button>
           </div>
         </div>
       </div>
-      <BeATrainer></BeATrainer>
     </div>
   );
 };
 
-export default TrainerDetails;
+export default AdminTrainerDetails;

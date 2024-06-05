@@ -1,12 +1,15 @@
+
+import { useContext, useState } from "react";
 import axios from "axios";
-import { useState } from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import { colourOptions } from "../data";
-
+import { addTrainer } from "../../Api/Api";
+import { AuthContext } from "../../providers/AuthProvider";
 const animatedComponents = makeAnimated();
+
 const options = [
   { value: "Flexibility", label: "Flexibility" },
   { value: "Creativity", label: "Creativity" },
@@ -15,14 +18,14 @@ const options = [
   { value: "Motivational", label: "Motivational" },
 ];
 
-const availableTimeOptions = [
-  { value: "10.30am", label: "10.30am" },
-  { value: "12.30pm", label: "12.30pm" },
-  { value: "3.00pm", label: "3.00pm" },
-  { value: "11.00am", label: "11.00am" },
-  { value: "6.00pm", label: "6.00pm" },
-  { value: "8.00pm", label: "8.00pm" },
-];
+// const availableTimeOptions = [
+//   { value: "10.30am", label: "10.30am" },
+//   { value: "12.30pm", label: "12.30pm" },
+//   { value: "3.00pm", label: "3.00pm" },
+//   { value: "11.00am", label: "11.00am" },
+//   { value: "6.00pm", label: "6.00pm" },
+//   { value: "8.00pm", label: "8.00pm" },
+// ];
 
 const availableDayOptions = [
   { value: "sun", label: "SUNDAY" },
@@ -36,18 +39,22 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const BecomeTrainer = () => {
+  const { user } = useContext(AuthContext);
   const [selectedValues, setSelectedValues] = useState([]);
-  const [availableTime, setavailableTime] = useState([]);
+  // const [availableTime, setavailableTime] = useState([]);
   const [availableDay, setavailableDay] = useState([]);
-
+// const [status, setStatus] = useState("pending");
+// const [role, setRole] = useState("user");
   const handleAddTrainer = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.full_name.value;
     const email = form.email.value;
     const age = form.age.value;
+    const time = form.time.value;
     const yearExperience = form.year_experience.value;
     const imageFile = form.image.files[0]; 
+    
     console.log(imageFile);
 
     const formData = new FormData();
@@ -66,18 +73,18 @@ const BecomeTrainer = () => {
           name,
           email,
           age,
+          time,
           yearExperience,
           image: imageUrl,
           selectedSpecialties: selectedValues.map((option) => option.value),
-          availableTime: availableTime.map((option) => option.value),
+          // availableTime: availableTime.map((option) => option.value),
           availableDay: availableDay.map((option) => option.value),
+          status: "pending",
+          role: "user",
         };
 
         try {
-          const response = await axios.post(
-            `${import.meta.env.VITE_BASE_URL}/addtrainer`,
-            createTrainer
-          );
+         const response = await addTrainer(createTrainer);
           toast.success("Trainer Added successfully!");
           console.log(response);
         } catch (error) {
@@ -120,6 +127,7 @@ const BecomeTrainer = () => {
               name="email"
               placeholder="your name"
               className="peer relative h-10 w-full rounded border border-slate-200 px-4 text-sm text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
+              defaultValue={user?.email} readOnly
             />
             <label
               htmlFor="id-01"
@@ -154,6 +162,21 @@ const BecomeTrainer = () => {
             </label>
           </div>
           <div className="relative my-1">
+            <input
+              type="number"
+              name="time"
+              placeholder="time"
+              className="peer relative h-10 w-full rounded border border-slate-200 px-4 text-sm text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
+            />
+            <label
+              htmlFor="id-01"
+              className="absolute left-2 -top-2 z-[1] cursor-text px-2 text-xs text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-sm peer-autofill:-top-2 peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:cursor-default peer-focus:text-xs peer-focus:text-emerald-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent"
+            >
+              Available time in a day
+            </label>
+          </div>
+          <div className="relative my-1">
+            <label>Expertise Area</label>
             <Select
               name="select_field"
               closeMenuOnSelect={false}
@@ -164,7 +187,8 @@ const BecomeTrainer = () => {
               onChange={(values) => setSelectedValues(values)}
             />
           </div>
-          <div className="relative my-1">
+          {/* <div className="relative my-1">
+            <label></label>
             <Select
               name="available_time"
               closeMenuOnSelect={false}
@@ -174,7 +198,7 @@ const BecomeTrainer = () => {
               value={availableTime}
               onChange={(values) => setavailableTime(values)}
             />
-          </div>
+          </div> */}
 
           <div className="relative my-1">
             <Select

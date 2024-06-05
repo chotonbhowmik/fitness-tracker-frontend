@@ -12,7 +12,8 @@ import {
   signOut,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
-
+import useAxiosPublic from "../hooks/useAxiosPublic";
+// import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 export const AuthContext = createContext(null);
 
 const auth = getAuth(app);
@@ -34,13 +35,46 @@ const AuthProvider = ({ children }) => {
 
   const provider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
+  const axiosPublic = useAxiosPublic();
 
+  // const setDefaultRole = async (uid) => {
+  //   const userRef = doc(db, "users", uid);
+  //   const docSnap = await getDoc(userRef);
+
+  //   if (!docSnap.exists()) {
+  //     await setDoc(userRef, {
+  //       role: "member",
+  //     });
+  //   }
+  // };
+  
   const googleSignIn = () => {
     signInWithPopup(auth, provider)
-      .then((result) => {
+      .then(async (result) => {
         const logInUser = result.user;
         setUser(logInUser);
         toast.success("Signed in with Google successfully!");
+
+        // Prepare user data for the API
+        const user = {
+          displayName: logInUser.displayName,
+          email: logInUser.email,
+          photoURL: logInUser.photoURL,
+          role: "member",
+        };
+
+        // Make a POST request to the API
+        try {
+          const response = await axiosPublic.post("/users", user);
+          if (response.data.insertedId) {
+            // toast.success("User data inserted successfully!");
+          } else if (response.data.message === "user already exists") {
+            toast.warn("User already exists!");
+          }
+        } catch (error) {
+          console.error("Error inserting user data:", error);
+          toast.error("Failed to insert user data!");
+        }
       })
       .catch((error) => {
         const errorMessage = error.message;

@@ -17,10 +17,16 @@ const axiosPublic = useAxiosPublic();
     const email = form.get("email");
     const password = form.get("password");
     const photoURL = form.get("photo");
+    
 
     try {
-      const result = await createUser(email, password, displayName, photoURL);
-const user = { displayName, email, password, photoURL };
+      const result = await createUser(
+        email,
+        password,
+        displayName,
+        photoURL,
+      );
+const user = { displayName, email, password, photoURL, role: "member" };
       axiosPublic.post("/users", user).then((res) => {
         if (res.data.insertedId) {
            
