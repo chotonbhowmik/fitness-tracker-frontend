@@ -153,6 +153,36 @@ const Dashboard = () => {
                 strokeWidth="1.5"
                 stroke="currentColor"
                 className="h-6 w-6"
+                aria-label="Analytics icon"
+                role="graphics-symbol"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z"
+                />
+              </svg>
+            </div>
+            <div className="flex min-h-[2rem] flex-col items-start justify-center gap-0">
+              <NavLink to="add-forum">
+                <h4 className="text-base text-slate-700 ">Add Forum</h4>
+              </NavLink>
+            </div>
+          </li>
+          <li className="flex items-center gap-4 px-4 py-3">
+            <div className="flex items-center self-center text-emerald-500">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="h-6 w-6"
                 aria-label="Cloud icon"
                 role="graphics-symbol"
               >

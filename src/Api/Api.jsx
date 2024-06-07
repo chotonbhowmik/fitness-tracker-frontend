@@ -5,6 +5,10 @@ const client = axios.create({
   baseURL: BASE_URL,
 });
 
+export const fetchUser = async () => {
+  const response = await client.get(`/alluser`);
+  return response.data;
+};
 
 export const fetchTrainer = async () => {
   const response = await client.get(`/alltrainer`);
@@ -49,3 +53,12 @@ export const addClass = async (createClass) => {
   const response = await client.post(`/addclass`, createClass);
   return response.data;
 };
+export const allClass = async() =>{
+  const response = await client.get(`/allclass`);
+  return response.data;
+}
+
+export const addForumData = async(createForum) =>{
+  const response = await client.post("/addforum", createForum);
+  return response.data;
+} 

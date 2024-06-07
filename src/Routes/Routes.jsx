@@ -14,6 +14,9 @@ import AdminDashboardTrainer from "../pages/Admin/AdminDashboardTrainer/AdminDas
 import AllTrainers from "../pages/Admin/AllTrainers/AllTrainers";
 import AdminTrainerDetails from "../pages/Admin/AdminTrainerDetails/AdminTrainerDetails";
 import AddClass from "../pages/Admin/AddClass/AddClass";
+import AllClass from "../pages/AllClass/AllClass";
+import Forum from "../pages/Forum/Forum";
+import AddForum from "../pages/AddForum/AddForum";
 // import UserHome from "../components/UserHome/UserHome"; 
 
 export const router = createBrowserRouter([
@@ -49,6 +52,14 @@ export const router = createBrowserRouter([
         path: "/booking",
         element: <Booking></Booking>,
       },
+      {
+        path: "/all-class",
+        element: <AllClass></AllClass>,
+      },
+      {
+        path: "/forum",
+        element: <Forum></Forum>,
+      },
     ],
   },
   {
@@ -78,6 +89,10 @@ export const router = createBrowserRouter([
       {
         path: "add-class",
         element: <AddClass></AddClass>,
+      },
+      {
+        path: "add-forum",
+        element: <AddForum></AddForum>,
       },
     ],
   },

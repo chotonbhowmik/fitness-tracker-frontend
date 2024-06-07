@@ -63,11 +63,11 @@ const AllTrainer = () => {
               
             </div>
             <div className="flex justify-center p-6 pt-0 mt-4">
-              {/* <button className="inline-flex items-center justify-center  h-10 gap-2 px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded focus-visible:outline-none whitespace-nowrap bg-green-400 hover:bg-emerald-600 focus:bg-emerald-700 disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
+              <button className="inline-flex items-center justify-center  h-10 gap-2 px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded focus-visible:outline-none whitespace-nowrap bg-green-400 hover:bg-emerald-600 focus:bg-emerald-700 disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
                 <Link to={`/details/${allTrainer._id}`}>
                   <span>Know more</span>
                 </Link>
-              </button> */}
+              </button>
             </div>
           </div>
         </div>

@@ -100,7 +100,9 @@ const signOut = () => {
                   className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-4"
                   href="javascript:void(0)"
                 >
-                  <span>All Class</span>
+                  <NavLink to="/all-class">
+                    <span>All Class</span>
+                  </NavLink>
                 </a>
               </li>
               <li role="none" className="flex items-stretch">
@@ -110,7 +112,9 @@ const signOut = () => {
                   className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-4"
                   href="javascript:void(0)"
                 >
-                  <span>Forum</span>
+                  <NavLink to="/forum">
+                    <span>Forum</span>
+                  </NavLink>
                 </a>
               </li>
               {!user ? (
