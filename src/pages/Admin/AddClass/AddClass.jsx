@@ -46,7 +46,8 @@ const AddClass = () => {
         try {
           const response = await addClass(createClass);
           toast.success("Class Added successfully!");
-          console.log(response);
+          // console.log(response);
+          form.reset();
         } catch (error) {
           console.error(error);
           toast.error("Failed to add Class.");

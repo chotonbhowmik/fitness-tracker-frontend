@@ -86,7 +86,8 @@ const BecomeTrainer = () => {
         try {
          const response = await addTrainer(createTrainer);
           toast.success("Trainer Added successfully!");
-          console.log(response);
+          // console.log(response);
+          form.reset();
         } catch (error) {
           console.error(error);
           toast.error("Failed to add trainer.");

@@ -62,3 +62,10 @@ export const addForumData = async(createForum) =>{
   const response = await client.post("/addforum", createForum);
   return response.data;
 } 
+export const fetchForum = async ({ queryKey }) => {
+  const [_key, { page, limit }] = queryKey;
+  const response = await client.get(`/allforum`, {
+    params: { page, limit },
+  });
+  return response.data;
+};
