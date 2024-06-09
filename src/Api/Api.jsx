@@ -40,6 +40,20 @@ export const fetchUpdateTrainer = async (trainerId) => {
   return response.data;
 };
 
+export const fetchUpdateUser = async (userId) => {
+  const response = await client.patch(`/users/alluser/${userId}`, {});
+  return response.data;
+};
+
+
+
+
+
+// export const fetchUpdateUser = async (trainerId) => {
+//   const response = await client.patch(`/users/alluser/${trainerId}`, {});
+//   return response.data;
+// };
+
 export const fetchDeleteTrainer = async (trainerId) => {
   const response = await client.patch(`/users/delete/${trainerId}`, {});
   return response.data;

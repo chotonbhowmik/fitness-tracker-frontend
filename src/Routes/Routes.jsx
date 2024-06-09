@@ -17,6 +17,7 @@ import AddClass from "../pages/Admin/AddClass/AddClass";
 import AllClass from "../pages/AllClass/AllClass";
 import Forum from "../pages/Forum/Forum";
 import AddForum from "../pages/AddForum/AddForum";
+import PrivateRoute from "./PrivateRoute";
 // import UserHome from "../components/UserHome/UserHome"; 
 
 export const router = createBrowserRouter([
@@ -38,7 +39,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/become-trainer",
-        element: <BecomeTrainer></BecomeTrainer>,
+        element: (
+          <PrivateRoute>
+            <BecomeTrainer></BecomeTrainer>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/all-trainer",

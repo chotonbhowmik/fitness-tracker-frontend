@@ -1,4 +1,6 @@
 // import React from 'react';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { addNewsletter } from "../../../Api/Api";
 const NewsLetter = () => {
   const handleNewsletter = async (e) => {
@@ -10,6 +12,8 @@ const NewsLetter = () => {
     }
     const response = await addNewsletter(createNewsletter);
     console.log(response);
+     toast.success("Thanks for subscribe our newsletter");
+    form.reset();
   }
     return (
       <div>
@@ -49,7 +53,7 @@ const NewsLetter = () => {
                       type="email"
                       name='email'
                       id="email"
-                      required=""
+                      required
                     />
                   </div>
                   <div>
@@ -62,6 +66,7 @@ const NewsLetter = () => {
                   </div>
                 </div>
               </form>
+              <ToastContainer></ToastContainer>
             </div>
           </div>
         </div>

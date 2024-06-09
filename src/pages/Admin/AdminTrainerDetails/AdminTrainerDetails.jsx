@@ -1,14 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import {  fetchUpdateTrainer } from "../../../Api/Api";
+import {
+  fetchUser,
+  fetchUpdateTrainer,
+  fetchUpdateUser,
+} from "../../../Api/Api";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const AdminTrainerDetails = () => {
   const { id } = useParams();
   const [trainerData, setTrainerData] = useState(null);
-//   const [selectedTime, setSelectedTime] = useState(null);
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     axiosPublic.get(`alltrainer/${id}`).then((res) => {
@@ -20,16 +25,30 @@ const AdminTrainerDetails = () => {
     return <div>Loading...</div>;
   }
 
-  const handleUpdateStatus = async (allTrainer) => {
+  const handleUpdateStatus = async (trainerId) => {
     try {
-      const response = await fetchUpdateTrainer(allTrainer);
-      console.log(response);
-     navigate("/dashboard/all-trainers");
+      
+      const trainerResponse = await fetchUpdateTrainer(trainerId, {
+        
+      });
+
+      // Fetch all users to find the logged-in user
+      const allUsers = await fetchUser();
+      const loggedInUser = allUsers.find((u) => u.email === user.email);
+
+      if (loggedInUser) {
+        const userResponse = await fetchUpdateUser(loggedInUser._id);
+        console.log(trainerResponse, userResponse);
+      } else {
+        console.error("Logged-in user not found in the user list");
+      }
+
+     
+      navigate("/dashboard/all-trainers");
     } catch (error) {
-      console.error("Error updating trainer:", error);
+      console.error("Error updating trainer and user:", error);
     }
   };
-
   return (
     <div className="max-w-4xl  mx-auto">
       <div className="flex flex-col overflow-hidden bg-white rounded shadow-md text-slate-500 shadow-slate-200 sm:flex-row  my-5">
@@ -67,10 +86,7 @@ const AdminTrainerDetails = () => {
           <div className="flex gap-2">
             <p>Available time: </p>
 
-            <button
-              className="inline-flex items-center justify-center h-8 gap-2 px-6 text-sm font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"
-              
-            >
+            <button className="inline-flex items-center justify-center h-8 gap-2 px-6 text-sm font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
               {trainerData.time} H
             </button>
           </div>
