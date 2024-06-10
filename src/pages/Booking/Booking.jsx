@@ -1,18 +1,32 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { allClass } from "../../Api/Api";
+import { useQuery } from "@tanstack/react-query";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Booking = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { trainerData, selectedTime } = location.state || {};
   const [selectedPackage, setSelectedPackage] = React.useState(null);
+  const [selectedClass, setSelectedClass] = React.useState(null);
+  const { data: allClassData = [] } = useQuery({
+    queryKey: ["allClassData"],
+    queryFn: allClass,
+  });
 
   const handleJoinNow = () => {
+    if (!selectedPackage || !selectedClass) {
+      toast.error("Please select a package and a class.");
+      return;
+    }
     navigate("/payment", {
       state: {
         trainerData,
         selectedTime,
         selectedPackage,
+        selectedClass,
       },
     });
   };
@@ -63,17 +77,21 @@ const Booking = () => {
       </h2>
       <p className="text-lg">Selected Time: {selectedTime}</p>
 
-      <div className="mt-4">
-        <h2 className="text-xl font-semibold">Classes</h2>
-        {trainerData.classes ? (
-          <ul className="list-disc list-inside">
-            {trainerData.classes.map((classItem, index) => (
-              <li key={index}>{classItem}</li>
-            ))}
-          </ul>
-        ) : (
-          <p>No classes available</p>
-        )}
+      <div className="mt-4 flex gap-4">
+        <h2 className="text-xl font-semibold">Classes: </h2>
+        {allClassData.map((classItem, index) => (
+          <div
+            key={index}
+            className="text-center cursor-pointer h-9 w-9 "
+            onClick={() => setSelectedClass(classItem)}
+          >
+            <img
+              src={classItem.image}
+              alt={classItem.name}
+              className="rounded-full"
+            />
+          </div>
+        ))}
       </div>
 
       <div className="mt-4">
@@ -117,12 +135,12 @@ const Booking = () => {
       </div>
 
       <button
-        className="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
+        className="mt-4 bg-blue-500 text-white py-2 px-4 rounded "
         onClick={handleJoinNow}
-        disabled={!selectedPackage}
       >
         Join Now
       </button>
+      <ToastContainer />
     </div>
   );
 };

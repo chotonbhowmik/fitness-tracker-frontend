@@ -7,7 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Payment = () => {
   const location = useLocation();
-  const { trainerData, selectedTime, selectedPackage } = location.state || {};
+  const { trainerData, selectedTime, selectedPackage, selectedClass } =
+    location.state || {};
   const { user } = useContext(AuthContext);
 
   if (!trainerData || !selectedTime || !selectedPackage) {
@@ -43,6 +44,7 @@ const Payment = () => {
         <p>Selected Time: {selectedTime}</p>
         <p>Package: {selectedPackage.name}</p>
         <p>Price: ${selectedPackage.price}</p>
+        <p>Selected Class: {selectedClass.name}</p>
       </div>
 
       <form onSubmit={handlePayment} className="space-y-4">
