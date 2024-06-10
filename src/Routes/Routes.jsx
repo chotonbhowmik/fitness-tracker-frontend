@@ -18,6 +18,7 @@ import AllClass from "../pages/AllClass/AllClass";
 import Forum from "../pages/Forum/Forum";
 import AddForum from "../pages/AddForum/AddForum";
 import PrivateRoute from "./PrivateRoute";
+import Payment from "../pages/Payment/Payment";
 // import UserHome from "../components/UserHome/UserHome"; 
 
 export const router = createBrowserRouter([
@@ -56,6 +57,10 @@ export const router = createBrowserRouter([
       {
         path: "/booking",
         element: <Booking></Booking>,
+      },
+      {
+        path: "/payment",
+        element: <Payment></Payment>,
       },
       {
         path: "/all-class",

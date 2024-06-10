@@ -83,3 +83,10 @@ export const fetchForum = async ({ queryKey }) => {
   });
   return response.data;
 };
+
+
+// payment api
+export const addPayment = async (paymentData) => {
+  const response = await client.post(`/payment`, paymentData);
+  return response.data;
+};
