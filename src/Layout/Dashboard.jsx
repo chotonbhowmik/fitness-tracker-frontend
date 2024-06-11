@@ -236,7 +236,7 @@ const role = useAdmin();
                   </svg>
                 </div>
                 <div className="flex min-h-[2rem] flex-col items-start justify-center gap-0">
-                  <NavLink to="all-applied-trainer">
+                  <NavLink to="memebr-trainer">
                     <h4 className="text-base text-slate-700 ">
                       Applied Trainer
                     </h4>
@@ -385,6 +385,7 @@ const role = useAdmin();
                   <h4 className="text-base text-slate-700 ">Settings</h4>
                 </div>
               </li>
+              
             </>
           )}
         </ul>

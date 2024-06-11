@@ -23,6 +23,7 @@ import Balance from "../pages/Balance/Balance";
 import AddSlot from "../pages/AddSlot/AddSlot";
 import ManageSlot from "../pages/ManageSlot/ManageSlot";
 import Profile from "../pages/Profile/Profile";
+import MemberAppliedTrainer from "../pages/MemberAppliedTrainer/MemberAppliedTrainer";
 // import UserHome from "../components/UserHome/UserHome"; 
 
 export const router = createBrowserRouter([
@@ -123,6 +124,10 @@ export const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile></Profile>,
+      },
+      {
+        path: "memebr-trainer",
+        element: <MemberAppliedTrainer></MemberAppliedTrainer>,
       },
     ],
   },

@@ -30,7 +30,7 @@ const AllTrainer = () => {
           <div className="p-6">
             <header className="mb-4 flex justify-between">
               <h3 className="text-xl font-medium text-slate-700">
-                {allTrainer.name}
+             {allTrainer.name}
               </h3>
               <p className="text-sm text-slate-400">
                 Year of Experience: {allTrainer.yearExperience}
@@ -58,7 +58,7 @@ const AllTrainer = () => {
                   key="time._id"
                   className="bg-green-400 text-white p-2 rounded"
                 >
-                  {allTrainer.time} H
+                Total Time:  {allTrainer.time}H
                 </p>
               
             </div>

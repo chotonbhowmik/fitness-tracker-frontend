@@ -6,8 +6,9 @@ import makeAnimated from "react-select/animated";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import { colourOptions } from "../data";
-import { addTrainer } from "../../Api/Api";
+import { addTrainer, fetchAllSlot } from "../../Api/Api";
 import { AuthContext } from "../../providers/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
 const animatedComponents = makeAnimated();
 
 const options = [
@@ -41,10 +42,17 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const BecomeTrainer = () => {
   const { user } = useContext(AuthContext);
   const [selectedValues, setSelectedValues] = useState([]);
-  // const [availableTime, setavailableTime] = useState([]);
   const [availableDay, setavailableDay] = useState([]);
-// const [status, setStatus] = useState("pending");
-// const [role, setRole] = useState("user");
+   const [selectedSlot, setSelectedSlot] = useState(null);
+
+const { data: allSlot = [] } = useQuery({
+  queryKey: ["allSlot"],
+  queryFn: fetchAllSlot,
+});
+ const slotOptions = allSlot.map((slot) => ({
+   value: slot.name,
+   label: slot.name,
+ }));
   const handleAddTrainer = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -73,12 +81,13 @@ const BecomeTrainer = () => {
           name,
           email,
           age,
-          time,
+time,
           yearExperience,
           image: imageUrl,
           selectedSpecialties: selectedValues.map((option) => option.value),
           // availableTime: availableTime.map((option) => option.value),
           availableDay: availableDay.map((option) => option.value),
+          available_time: selectedSlot.map((option) => option.value),
           status: "pending",
           role: "user",
         };
@@ -128,7 +137,8 @@ const BecomeTrainer = () => {
               name="email"
               placeholder="your name"
               className="peer relative h-10 w-full rounded border border-slate-200 px-4 text-sm text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
-              defaultValue={user?.email} readOnly
+              defaultValue={user?.email}
+              readOnly
             />
             <label
               htmlFor="id-01"
@@ -188,18 +198,18 @@ const BecomeTrainer = () => {
               onChange={(values) => setSelectedValues(values)}
             />
           </div>
-          {/* <div className="relative my-1">
+          <div className="relative my-1">
             <label></label>
             <Select
               name="available_time"
               closeMenuOnSelect={false}
               components={animatedComponents}
               isMulti
-              options={availableTimeOptions}
-              value={availableTime}
-              onChange={(values) => setavailableTime(values)}
+              options={slotOptions}
+              value={selectedSlot}
+              onChange={(values) => setSelectedSlot(values)}
             />
-          </div> */}
+          </div>
 
           <div className="relative my-1">
             <Select
