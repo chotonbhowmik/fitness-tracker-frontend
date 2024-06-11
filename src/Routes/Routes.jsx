@@ -19,6 +19,10 @@ import Forum from "../pages/Forum/Forum";
 import AddForum from "../pages/AddForum/AddForum";
 import PrivateRoute from "./PrivateRoute";
 import Payment from "../pages/Payment/Payment";
+import Balance from "../pages/Balance/Balance";
+import AddSlot from "../pages/AddSlot/AddSlot";
+import ManageSlot from "../pages/ManageSlot/ManageSlot";
+import Profile from "../pages/Profile/Profile";
 // import UserHome from "../components/UserHome/UserHome"; 
 
 export const router = createBrowserRouter([
@@ -103,6 +107,22 @@ export const router = createBrowserRouter([
       {
         path: "add-forum",
         element: <AddForum></AddForum>,
+      },
+      {
+        path: "balance",
+        element: <Balance></Balance>,
+      },
+      {
+        path: "slot",
+        element: <AddSlot></AddSlot>,
+      },
+      {
+        path: "manage-slot",
+        element: <ManageSlot></ManageSlot>,
+      },
+      {
+        path: "profile",
+        element: <Profile></Profile>,
       },
     ],
   },

@@ -182,19 +182,7 @@ const signOut = () => {
                           </span>
                         </a>
                       </li>
-                      <li>
-                        <a
-                          className="flex items-start justify-start gap-2 p-2 px-5 transition-colors duration-300 text-slate-500 hover:bg-emerald-50 hover:text-emerald-600 focus:bg-emerald-50 focus:text-emerald-600 focus:outline-none focus-visible:outline-none"
-                          href="#"
-                          aria-current="page"
-                        >
-                          <span className="flex flex-col gap-1 overflow-hidden whitespace-nowrap">
-                            <span className="leading-5 truncate">
-                              Metrics and
-                            </span>
-                          </span>
-                        </a>
-                      </li>
+                      
                       <li>
                         <a
                           className="flex items-start justify-start gap-2 p-2 px-5 overflow-hidden transition-colors duration-300 text-slate-500 hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 focus:text-emerald-600 focus:outline-none focus-visible:outline-none"
@@ -210,31 +198,7 @@ const signOut = () => {
                           </span>
                         </a>
                       </li>
-                      <li>
-                        <a
-                          className="flex items-start justify-start gap-2 p-2 px-5 transition-colors duration-300 text-slate-500 hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 focus:text-emerald-600 focus:outline-none focus-visible:outline-none"
-                          href="#"
-                        >
-                          <span className="flex flex-col gap-1 overflow-hidden whitespace-nowrap">
-                            {" "}
-                            <span className="leading-5 truncate">
-                              User settings
-                            </span>
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          className="flex items-start justify-start gap-2 p-2 px-5 transition-colors duration-300 text-slate-500 hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 focus:text-emerald-600 focus:outline-none focus-visible:outline-none"
-                          href="#"
-                        >
-                          <span className="flex flex-col gap-1 overflow-hidden whitespace-nowrap">
-                            <span className="leading-5 truncate">
-                              User Profile
-                            </span>
-                          </span>
-                        </a>
-                      </li>
+                     
                     </ul>
                   )}
                 </div>

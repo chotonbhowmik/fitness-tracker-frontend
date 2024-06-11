@@ -90,3 +90,23 @@ export const addPayment = async (paymentData) => {
   const response = await client.post(`/payment`, paymentData);
   return response.data;
 };
+
+ export const getPayment =  async() => {
+  const response = await client.get("/getpaymentdata");
+  return response.data;
+ }
+
+//  slot api
+export const addSlot = async (createSlot) => {
+  const response = await client.post(`/addslot`, createSlot);
+  return response.data;
+};
+
+export const fetchAllSlot = async () => {
+  const response = await client.get(`/allslot`);
+  return response.data;
+}; 
+export const DeleteSlot = async (id) => {
+  const response = await client.delete(`/slot/${id}`);
+  return response.data;
+};
