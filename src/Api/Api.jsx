@@ -67,10 +67,17 @@ export const addClass = async (createClass) => {
   const response = await client.post(`/addclass`, createClass);
   return response.data;
 };
-export const allClass = async() =>{
-  const response = await client.get(`/allclass`);
+export const allClass = async ({ queryKey }) => {
+  const [_key, { page, limit }] = queryKey;
+  const response = await client.get(`/allclass`, {
+    params: { page, limit },
+  });
+  // console.log("API Response:", response.data);
   return response.data;
-}
+};
+
+
+
 
 export const addForumData = async(createForum) =>{
   const response = await client.post("/addforum", createForum);

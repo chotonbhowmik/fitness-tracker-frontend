@@ -32,16 +32,7 @@ const AdminTrainerDetails = () => {
         
       });
 
-      // Fetch all users to find the logged-in user
-      const allUsers = await fetchUser();
-      const loggedInUser = allUsers.find((u) => u.email === user.email);
-
-      if (loggedInUser) {
-        const userResponse = await fetchUpdateUser(loggedInUser._id);
-        console.log(trainerResponse, userResponse);
-      } else {
-        console.error("Logged-in user not found in the user list");
-      }
+       const userResponse = await fetchUpdateUser(trainerId);
 
      
       navigate("/dashboard/all-trainers");

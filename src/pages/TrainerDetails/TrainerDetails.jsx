@@ -42,7 +42,7 @@ const TrainerDetails = () => {
               className="relative inline-flex items-center justify-center w-12 h-12 text-white rounded-full"
             >
               <img
-                src="https://i.pravatar.cc/48?img=24"
+                src={trainerData.image}
                 alt="user name"
                 title="user name"
                 width="48"

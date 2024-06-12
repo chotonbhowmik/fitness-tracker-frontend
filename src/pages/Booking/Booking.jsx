@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { allClass } from "../../Api/Api";
 import { useQuery } from "@tanstack/react-query";
@@ -11,11 +11,23 @@ const Booking = () => {
   const { trainerData, selectedTime } = location.state || {};
   const [selectedPackage, setSelectedPackage] = React.useState(null);
   const [selectedClass, setSelectedClass] = React.useState(null);
-  const { data: allClassData = [] } = useQuery({
-    queryKey: ["allClassData"],
-    queryFn: allClass,
-  });
+    const [page, setPage] = useState(1);
+    const limit = 6;
 
+    const { data, isLoading, isError, error } = useQuery({
+      queryKey: ["allClassData", { page, limit }],
+      queryFn: allClass,
+      keepPreviousData: true,
+    });
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  const { response: classData = [], pages = 1 } = data || {};
   const handleJoinNow = () => {
     if (!selectedPackage || !selectedClass) {
       toast.error("Please select a package and a class.");
@@ -79,7 +91,7 @@ const Booking = () => {
 
       <div className="mt-4 flex gap-4">
         <h2 className="text-xl font-semibold">Classes: </h2>
-        {allClassData.map((classItem, index) => (
+        {classData.map((classItem, index) => (
           <div
             key={index}
             className="text-center cursor-pointer h-9 w-9 "

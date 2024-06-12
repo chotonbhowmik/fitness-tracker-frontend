@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import  { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { addPayment } from "../../Api/Api";
@@ -30,8 +30,9 @@ const Payment = () => {
       await addPayment(paymentData);
       toast.success("Payment submitted successfully!");
       Navigate("/all-trainer");
+    
     } catch (error) {
-      toast.error("Failed to submit payment!");
+      // toast.error("Failed to submit payment!");
       console.error("Payment submission error:", error);
     }
   };
@@ -57,6 +58,7 @@ const Payment = () => {
             name="email"
             required
             className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            
             defaultValue={user?.email}
             readOnly
           />
@@ -66,7 +68,7 @@ const Payment = () => {
           type="submit"
           className="inline-flex items-center justify-center w-full h-12 gap-2 px-6 text-sm font-medium tracking-wide text-white transition duration-300 rounded shadow-lg whitespace-nowrap bg-emerald-500 shadow-emerald-100 hover:bg-emerald-600 hover:shadow-md hover:shadow-emerald-100 focus:bg-emerald-700 focus:shadow-md focus:shadow-emerald-100 focus-visible:outline-none"
         >
-          Submit Payment
+          Confirm Payment
         </button>
       </form>
       <ToastContainer></ToastContainer>

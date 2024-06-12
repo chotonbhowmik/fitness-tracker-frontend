@@ -47,10 +47,12 @@ const Testimonial = () => {
                     <figure className="relative z-10">
                       <blockquote className="p-6 text-lg leading-loose lg:text-xl">
                         <p className="text-xl font-semibold">
-                          Wind-ui is probably one of the best libraries I've
-                          come across. Good looking, easy to use and above all
-                          super accessible. If you haven't tried it yet just do
-                          so!
+                          This website was a game-changer! I found personalized
+                          meal plans that fit my taste and lifestyle. The
+                          workout videos are clear and easy to follow, and
+                          there's a huge variety to keep things interesting.
+                          I've lost weight, gained muscle, and feel so much more
+                          confident in my own skin.
                         </p>
                       </blockquote>
                       <figcaption className="flex flex-col items-center gap-2 p-6 text-sm text-emerald-500">
@@ -177,9 +179,11 @@ const Testimonial = () => {
                     <figure className="relative z-10">
                       <blockquote className="p-6 text-lg leading-loose lg:text-xl">
                         <p className="text-xl font-semibold">
-                          Wind-ui components come with proper attributes to
-                          ensure full accessibility with the WAI-ARIA standards.
-                          That's just awesome for a free ui library.
+                          This website's home workout programs are perfect for
+                          beginners! I started with bodyweight exercises and
+                          gradually progressed to using weights at home. I feel
+                          stronger, more energetic, and I actually enjoy working
+                          out now!
                         </p>
                       </blockquote>
                       <figcaption className="flex flex-col items-center gap-2 p-6 text-sm text-emerald-500">
@@ -306,9 +310,10 @@ const Testimonial = () => {
                     <figure className="relative z-10">
                       <blockquote className="p-6 text-lg leading-loose lg:text-xl">
                         <p className="text-xl font-semibold">
-                          You can easily communicate with Wind-ui's team for
-                          support through their discord channel. They are
-                          responsive and ultra helpful guys!
+                          This website has proven me wrong! The trainers offer
+                          modifications for all ages and abilities. I've
+                          improved my flexibility, balance, and stamina. I feel
+                          younger and more capable than ever before.
                         </p>
                       </blockquote>
                       <figcaption className="flex flex-col items-center gap-2 p-6 text-sm text-emerald-500">
