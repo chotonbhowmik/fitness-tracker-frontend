@@ -53,7 +53,7 @@ const FeaturedClass = () => {
                     Get a fitness routine tailored to your goals, fitness level,
                     and preferences. Our platform creates custom workout plans
                     that adapt as you progress, keeping you motivated and on
-                    track whether you're a beginner or an advanced athlete.
+                    track whether you are a beginner or an advanced athlete.
                   </p>
                 </div>
               </div>
@@ -113,7 +113,7 @@ const FeaturedClass = () => {
                     Get a fitness routine tailored to your goals, fitness level,
                     and preferences. Our platform creates custom workout plans
                     that adapt as you progress, keeping you motivated and on
-                    track whether you're a beginner or an advanced athlete.
+                    track whether you are a beginner or an advanced athlete.
                   </p>
                 </div>
               </div>

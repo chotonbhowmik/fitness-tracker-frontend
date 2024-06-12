@@ -1,8 +1,17 @@
-# React + Vite
+website name: FitnessFreak
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+admin login credential:
+Email: choton123@gmail.com
+Pass: 123456789
+live:https://fitness-tracker-8fd3e.web.app/
+Feature: 1.Login & Register using firebase
+2. Multi auth dashboard
+3. Responsive Website
+4. All trainer page from there user can book session
+5. Become Trainer page
+6. Admin can approve Trainer
+7. admin can delete trainer
+8. Forum Page where we can see all blog
+9. Graphical Dashboard
+10.All Class page
