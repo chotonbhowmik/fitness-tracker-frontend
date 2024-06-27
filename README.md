@@ -1,9 +1,6 @@
 website name: FitnessFreak
 
 
-admin login credential:
-Email: choton123@gmail.com
-Pass: 123456789
 live:https://fitness-tracker-8fd3e.web.app/
 Feature: 1.Login & Register using firebase
 2. Multi auth dashboard
